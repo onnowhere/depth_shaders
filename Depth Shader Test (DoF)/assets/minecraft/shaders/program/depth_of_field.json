@@ -1,0 +1,24 @@
+{
+    "blend": {
+        "func": "add",
+        "srcrgb": "one",
+        "dstrgb": "zero"
+    },
+    "vertex": "blit_util",
+    "fragment": "depth_of_field",
+    "attributes": [ "Position" ],
+    "samplers": [
+        { "name": "BlurSampler" },
+        { "name": "DiffuseSampler" },
+        { "name": "DiffuseDepthSampler" },
+        { "name": "TranslucentSampler" },
+        { "name": "TranslucentDepthSampler" }
+    ],
+    "uniforms": [
+        { "name": "ProjMat",    "type": "matrix4x4", "count": 16, "values": [ 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0 ] },
+        { "name": "InSize",     "type": "float",     "count": 2,  "values": [ 1.0, 1.0 ] },
+        { "name": "OutSize",    "type": "float",     "count": 2,  "values": [ 1.0, 1.0 ] },
+        { "name": "FocusRange", "type": "float",     "count": 2,  "values": [ 0.45, 0.485 ] },
+        { "name": "DepthScale", "type": "float",     "count": 2,  "values": [ 8.0, 8.0 ] }
+    ]
+}
