@@ -8,4 +8,4 @@ See https://imgur.com/a/yz9rPP1 for examples uses of depth shaders (not all shad
 
 ### License
 
-This project is made available under the [Creative Commons CC0 Public Domain license](LICENSE.md).
+This project is made available under the [Creative Commons CC0 Public Domain license](LICENSE).
