@@ -17,7 +17,7 @@ float LinearizeDepth(float depth)
 void main() {
     float depth = LinearizeDepth(texture2D(DiffuseDepthSampler, texCoord).r);
     if (mod(depth, 1.0) <= 0.02) {
-        gl_FragColor = vec4(1.0,0.0,0.0,0.1);
+        gl_FragColor = vec4(0.0,0.0,0.0,1.0);
     } else {
         gl_FragColor = vec4(texture2D(DiffuseSampler, texCoord).rgb, 1.0);
     }

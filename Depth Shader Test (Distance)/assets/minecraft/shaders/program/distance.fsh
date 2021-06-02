@@ -21,7 +21,7 @@ void main() {
     float depth = LinearizeDepth(texture2D(DiffuseDepthSampler, texCoord).r);
     float distance = length(vec3(1., (2.*texCoord - 1.) * vec2(ScreenSize.x/ScreenSize.y,1.) * tan(radians(_FOV / 2.))) * depth);
     if (mod(distance, 1.0) <= 0.05) {
-        gl_FragColor = vec4(1.0,0.0,0.0,0.1);
+        gl_FragColor = vec4(0.0,0.0,0.0,1.0);
     } else {
         gl_FragColor = vec4(texture2D(DiffuseSampler, texCoord).rgb, 1.0);
     }
