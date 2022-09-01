@@ -1,4 +1,4 @@
-#version 110
+#version 150
 
 uniform sampler2D BlurSampler;
 uniform sampler2D DiffuseSampler;
@@ -9,8 +9,9 @@ uniform sampler2D TranslucentDepthSampler;
 uniform vec2 FocusRange;
 uniform vec2 DepthScale;
 
-varying vec2 texCoord;
-varying vec2 oneTexel;
+in vec2 texCoord;
+in vec2 oneTexel;
+out vec4 fragColor;
 
 float near = 0.1; 
 float far  = 100.0; 
@@ -22,10 +23,10 @@ float LinearizeDepth(float depth)
 }
 
 void main() {
-    float depth = LinearizeDepth(texture2D(TranslucentDepthSampler, texCoord).r) / far; // divide by far for demonstration
+    float depth = LinearizeDepth(texture(TranslucentDepthSampler, texCoord).r) / far; // divide by far for demonstration
     depth = clamp(depth, 0.0, 1.0);
-    vec4 col = vec4(texture2D(DiffuseSampler, texCoord).rgb, 1.0);
-    vec4 col_blur = vec4(texture2D(BlurSampler, texCoord).rgb, 1.0);
+    vec4 col = vec4(texture(DiffuseSampler, texCoord).rgb, 1.0);
+    vec4 col_blur = vec4(texture(BlurSampler, texCoord).rgb, 1.0);
     vec2 focus_range = FocusRange;
     if (depth > focus_range.y) {
         depth *= DepthScale.x;
@@ -40,5 +41,5 @@ void main() {
         depth = clamp(depth, 0.0, 1.0);
         col = col*(depth) + col_blur*(1.0-depth);
     }
-    gl_FragColor = col;
+    fragColor = col;
 }
